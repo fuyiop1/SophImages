@@ -1,0 +1,23 @@
+﻿@model SophImages.ViewModels.AdminFilmIndex
+@section styles{
+    <link type="text/css" rel="Stylesheet" href="@Url.Content("~/Content/AdminFilmIndex.css")" />
+}
+<div class="text-align-right-wrapper">
+    @Html.ActionLink("Create", "Create")
+</div>
+<div>
+    <table width="100%">
+        @for (int i = 0; i < Model.Films.Count; i++)
+        {
+            var item = Model.Films[i];
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Director</td>
+                <td>@item.Year</td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    @Html.Partial("PagePartialView", Model)
+</div>

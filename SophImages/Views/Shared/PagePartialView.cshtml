@@ -1,0 +1,32 @@
+﻿@model SophImages.ViewModels.IPager
+<div class="pager-wrapper">
+    @{
+    if (Model.PageCount > 0)
+        {
+            Model.ChangePageIndex(1);
+            @Html.ActionLink("First", Model.Action, Model.RouteValueDic, new Dictionary<string, object> { {"class", "page-first-last-item"} })
+
+            Model.ChangePageIndex(Model.PreviousPageIndex);
+            @Html.ActionLink("<", Model.Action, Model.RouteValueDic)
+
+            for (int j = Model.DisplayPageStartIndex; j <= Model.DisplayPageEndIndex; j++)
+            {
+                if (j == Model.PageIndex)
+                {
+                    <span>@Model.PageIndex</span>
+                }
+                else
+                {
+                    Model.ChangePageIndex(j);
+                    @Html.ActionLink(j.ToString(), Model.Action, Model.RouteValueDic)
+                }
+            }
+        
+            Model.ChangePageIndex(Model.NextPageIndex);
+            @Html.ActionLink(">", Model.Action, Model.RouteValueDic)
+
+            Model.ChangePageIndex(Model.PageCount);
+            @Html.ActionLink("Last", Model.Action, Model.RouteValueDic, new Dictionary<string, object> { { "class", "page-first-last-item" } })
+        }
+    }
+</div>

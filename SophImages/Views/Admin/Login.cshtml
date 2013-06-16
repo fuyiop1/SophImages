@@ -1,0 +1,30 @@
+﻿@model SophImages.ViewModels.AdminLogin
+
+@section styles{
+}
+
+@using (Html.BeginForm("Login", "Admin"))
+{
+    @Html.HiddenFor(x => x.ReturnUrl)
+    <table>
+        <tr>
+            <td><label>Username</label></td>
+            <td>@Html.EditorFor(x => x.Admin.UserName)</td>
+            <td>@Html.ValidationMessageFor(x => x.Admin.UserName)</td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td>@Html.PasswordFor(x => x.Admin.Password)</td>
+            <td>@Html.ValidationMessageFor(x => x.Admin.Password)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.CheckBoxFor(x => x.IsRememberAccount) Remember me</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Login" /></td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,32 @@
+﻿@using SophImages.Helpers
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>SophImages</title>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.20.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.5.3.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.colorbox-min.js")"></script>
+        <link type="text/css" rel="Stylesheet" href="@Url.Content("~/Content/Site.css")" />
+        <link type="text/css" rel="Stylesheet" href="@Url.Content("~/Content/colorbox/colorbox.css")" />
+        @RenderSection("styles", required: false)
+    </head>
+    <body>
+        <div id="header" class="content-wrapper">
+            SophImages
+        </div>
+        <div id="body">
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+        </div>
+        <div id="footer" class="content-wrapper">
+            <p>&copy; @DateTime.Now.ToDefaultTargetGmtTime().Year - SophImages</p>
+        </div>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

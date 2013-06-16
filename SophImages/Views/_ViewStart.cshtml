@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var segments = Request.Url.Segments;
+    if (segments != null && segments.Length > 1)
+    {
+        var controller = segments[1];
+        if (controller.ToLower().Contains("admin"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+}

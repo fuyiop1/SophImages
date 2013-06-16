@@ -1,0 +1,87 @@
+﻿@model SophImages.ViewModels.AdminFilmCreate
+@section styles{
+    <link type="text/css" rel="Stylesheet" href="@Url.Content("~/Content/AdminFilmCreate.css")" />
+}
+@using SophImages.Helpers;
+@{
+    var action = string.Empty;
+    if (Model.IsForUpdate)
+    {
+        action = "Update";
+    }
+    else
+    {
+        action = "Create";
+    }
+}
+@using (Html.BeginForm(action, "AdminFilm"))
+{
+    @Html.HiddenFor(x => x.IsForUpdate)
+    @Html.HiddenFor(x => x.Film.Id)
+    @Html.HiddenFor(x => x.Film.IsPublished)
+    <table width="100%">
+        <tr>
+            <td width="100"><label>Name</label></td>
+            <td width="310">@Html.TextBoxFor(x => x.Film.Name)</td>
+            <td width="570">@Html.ValidationMessageFor(x => x.Film.Name)</td>
+        </tr>
+        <tr>
+            <td><label>Status</label></td>
+            <td>
+                <select name="Film.Status">
+                    @foreach (var item in Model.FilmStatusDictionary)
+                    {
+                        <option value="@item.Key" @(item.Key == Model.Film.Status ? "selected='selected'" : string.Empty)>@item.Value</option>
+                    }
+                </select>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label>Uri</label></td>
+            <td>@Html.TextBoxFor(x => x.Film.Uri)</td>
+            <td>@Html.ValidationMessageFor(x => x.Film.Uri)</td>
+        </tr>
+        <tr>
+            <td><label>Introduction</label></td>
+            <td>@Html.TextAreaFor(x => x.Film.Introduction)</td>
+            <td>@Html.ValidationMessageFor(x => x.Film.Introduction)</td>
+        </tr>
+        <tr>
+            <td><label>Director</label></td>
+            <td>@Html.TextBoxFor(x => x.Film.Director)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label>Cast</label></td>
+            <td>@Html.TextAreaFor(x => x.Film.Cast)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label>Year</label></td>
+            <td>
+                <select name="Film.Year">
+                    @for (int i = DateTime.Now.ToDefaultTargetGmtTime().Year; i > 1900; i--)
+                    {
+                        <option value="@i" @(i == Model.Film.Year ? "selected='selected'" : string.Empty)>@i</option>
+                    }
+                </select>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                @if (Model.IsForUpdate)
+                {
+                    <input type="submit" value="Update" />
+                }
+                else
+                {
+                    <input type="submit" value="Create" />
+                }
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
