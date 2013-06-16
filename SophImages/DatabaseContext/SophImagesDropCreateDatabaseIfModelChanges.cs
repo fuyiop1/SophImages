@@ -17,6 +17,23 @@ namespace SophImages.DatabaseContext
                 UserName = "admin",
                 Password = "123qwe"
             });
+
+            for (int i = 0; i < 20; i++)
+            {
+                var now = DateTime.Now;
+                context.Films.Add(new Film()
+                {
+                    Name = "Iron Man " + i,
+                    Uri = "www.baidu.com/" + i,
+                    Introduction = "Introduction " + i,
+                    Director = "David " + i,
+                    Status = i % 2,
+                    Year = now.Year - (i % 5),
+                    InsertDateTime = now,
+                    UpdateDateTime = now
+                });
+            }
+
             context.SaveChanges();
         }
     }

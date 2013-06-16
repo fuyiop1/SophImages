@@ -38,5 +38,17 @@ namespace SophImages.Helpers
             }
             return result;
         }
+
+        public static string GetEnumDescription(int val, Type enumType)
+        {
+            var result = string.Empty;
+            var dic = ConvertEnumToDictionary(enumType);
+            if (dic.Keys.Contains(val))
+            {
+                result = dic[val];
+            }
+            return result;
+        }
+
     }
 }

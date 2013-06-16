@@ -1,5 +1,6 @@
 ﻿@model SophImages.ViewModels.IPager
-<div class="pager-wrapper">
+<div class="pager-wrapper clear-fix">
+    <div class="float-right">
     @{
     if (Model.PageCount > 0)
         {
@@ -29,4 +30,5 @@
             @Html.ActionLink("Last", Model.Action, Model.RouteValueDic, new Dictionary<string, object> { { "class", "page-first-last-item" } })
         }
     }
+    </div>
 </div>
