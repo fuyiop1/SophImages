@@ -17,6 +17,7 @@
 @using (Html.BeginForm(action, "AdminFilm"))
 {
     @Html.HiddenFor(x => x.IsForUpdate)
+    @Html.HiddenFor(x => x.PageIndex)
     @Html.HiddenFor(x => x.Film.Id)
     @Html.HiddenFor(x => x.Film.IsPublished)
     <table width="100%">

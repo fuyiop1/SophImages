@@ -19,7 +19,7 @@ namespace SophImages.Controllers
                 PageIndex = PageIndex,
                 PageSize = PageSize,
                 TotalCount = DbContext.Films.Count(),
-                Films = DbContext.Films.OrderBy(x => x.Id).Skip(PageSkipCount()).Take(PageSize).ToList(),
+                Films = DbContext.Films.OrderByDescending(x => x.Id).Skip(PageSkipCount()).Take(PageSize).ToList(),
                 Controller = "AdminFilm",
                 Action = "Index"
             };
@@ -47,6 +47,39 @@ namespace SophImages.Controllers
                 DbContext.Films.Add(viewModel.Film);
                 DbContext.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(viewModel);
+            }
+        }
+
+        public ActionResult Update(int id)
+        {
+            var viewModel = new AdminFilmCreate();
+            viewModel.PageIndex = this.PageIndex;
+            var film = DbContext.Films.Find(id);
+            if (film == null)
+            {
+                film = new Film();
+            }
+            viewModel.Film = film;
+            viewModel.IsForUpdate = true;
+            return View("Create", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Update(AdminFilmCreate viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var film = DbContext.Films.Find(viewModel.Film.Id);
+                if (film != null)
+                {
+                    TryUpdateModel(film, "Film");
+                    DbContext.SaveChanges();
+                }
+                return RedirectToAction("Index", new { pageIndex = viewModel.PageIndex });
             }
             else
             {

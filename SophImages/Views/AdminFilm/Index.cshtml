@@ -25,7 +25,7 @@
                 <td><label>@item.Director</label></td>
                 <td><label>@item.Year</label></td>
                 <td class="text-align-center-wrapper">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Update", "Update", new { id = item.Id, pageIndex = Model.PageIndex })
                     @Html.ActionLink("Publish", "Publish", new { id = item.Id })
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>

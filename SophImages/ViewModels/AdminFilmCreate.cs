@@ -7,7 +7,7 @@ using SophImages.Helpers;
 
 namespace SophImages.ViewModels
 {
-    public class AdminFilmCreate : PagerBase
+    public class AdminFilmCreate
     {
         public AdminFilmCreate()
         {
@@ -16,6 +16,8 @@ namespace SophImages.ViewModels
 
         public bool IsForUpdate { get; set; }
         public Film Film { get; set; }
+
+        public int PageIndex { get; set; }
 
         public Dictionary<int, string> FilmStatusDictionary { get; set; }
     }
